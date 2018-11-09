@@ -40,7 +40,11 @@ export default class TodoList extends React.Component{
             .then((res) => {
                 console.log(res);
                 console.log(res.data);
-
+                this.setState(() => (
+                    {
+                        list:[...res.data]
+                    }
+                ))
 
             }).catch(() => {
             //alert('error')
