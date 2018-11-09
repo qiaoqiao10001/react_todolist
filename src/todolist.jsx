@@ -1,10 +1,11 @@
 import React,{Fragment} from 'react'
 import Item from './item'
+import axios from "axios"
 
 export default class TodoList extends React.Component{
     state = {
         inputValue:'',
-        list:['vue','react']
+        list:[]
     }
 
     handleInputChange = (e) => {
@@ -34,7 +35,20 @@ export default class TodoList extends React.Component{
         this.setState({list})
     }
 
+    componentDidMount() {
+        axios.get('/api/data')
+            .then((res) => {
+                console.log(res);
+                console.log(res.data);
+
+
+            }).catch(() => {
+            //alert('error')
+        })
+    }
+
     render(){
+
         const { inputValue,list } = this.state
         return(
             <Fragment>
